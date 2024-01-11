@@ -1,0 +1,6 @@
+@benchTime_HostAddress = http://localhost:5093
+
+GET {{benchTime_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
