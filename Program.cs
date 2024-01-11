@@ -13,13 +13,16 @@ builder.Services.AddSwaggerGen();
 
 // var Configuration = builder.Configuration;
 
-var app = builder.Build();
+
 
 builder.Services.AddDbContext<DataContext>(
-      options => options.UseInMemoryDatabase("BenchTime"));
+  options => options.UseSqlite($"Data Source=Data/data.db"));
+//   options => options.UseInMemoryDatabase("BenchTime"));
 // builder.Services.AddIdentity<User, IdentityRole>()
 // .AddEntityFrameworkStores<DataContext>()
 // .AddDefaultTokenProviders();
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -27,6 +30,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 
 app.UseHttpsRedirection();
 
