@@ -5,7 +5,7 @@
 namespace benchTime.Migrations
 {
     /// <inheritdoc />
-    public partial class initial_create : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,9 @@ namespace benchTime.Migrations
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    description = table.Column<string>(type: "TEXT", nullable: false)
+                    description = table.Column<string>(type: "TEXT", nullable: false),
+                    coordinates = table.Column<string>(type: "TEXT", nullable: false),
+                    image = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

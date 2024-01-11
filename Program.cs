@@ -11,16 +11,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// var Configuration = builder.Configuration;
+var Configuration = builder.Configuration;
 
-
-
+// Use SQLite
 builder.Services.AddDbContext<DataContext>(
-  options => options.UseSqlite($"Data Source=Data/data.db"));
-//   options => options.UseInMemoryDatabase("BenchTime"));
-// builder.Services.AddIdentity<User, IdentityRole>()
-// .AddEntityFrameworkStores<DataContext>()
-// .AddDefaultTokenProviders();
+  options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
+// // Use MySQL
+// builder.Services.AddDbContext<DataContext>(
+//   options => options.UseMySql(Configuration.GetConnectionString("MySql"), new MySqlServerVersion(new Version(8,2,0))));
 
 var app = builder.Build();
 
@@ -30,8 +29,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-
 
 app.UseHttpsRedirection();
 
